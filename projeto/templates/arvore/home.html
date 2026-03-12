@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/icon" href="{% static 'icone/icong.ico' %}">
     <title>MainPage</title>
 </head>
 <body>
@@ -36,9 +38,8 @@
             <li>Benjamim</li></ul>
             </ul></ul>
         <dd>
-            <dt><b><a href="/amigos/">Amigos</a></b></dt>
             <dt><b><a href="{% url 'parentes:home' %}">Parentes</a></b></dt>
-            <dt><b><a href="/colecao">Coleção</a></b></dt>
+            <dt><b><a href="/">Voltar</a></b></dt>
         </dl>
             <p></p>    
 </body>

@@ -1,31 +1,33 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/icon" href="{% static 'icone/icong.ico' %}">
     <title>Parentes</title>
 </head>
 <body>
-    <p>parentes:</p>
+    <p><B>Parentes:</B></p>
     <ul>
-        <li>mãe: <a href="/parentes/alyne">Alyne</a></li>
-        <li>padrasto: <a href="/parentes/eudes">Eudes</a></li>
-        <li>pai: <a href="/parentes/hebel">Hebel</a></li>
-        <li>madastra: <a href="/parentes/nyra">Nyra</a></li>
-        <li>vó(materna): <a href="/parentes/magali">Magali</a></li>
-        <li>vó(paterna): <a href="/parentes/marucia">Marucia</a></li>
-        <li>vó(consideracao)<b><a href="/parentes/lenira">Lenira</a>:</b></li>
-        <li><b><a href="/parentes/irmaos">irmãos</a>:</b></li>
+        <li>Mãe:<a href="{% url 'parentes:alyne' %}">Alyne</a></li>
+        <li>padrasto: <a href="{% url 'parentes:eudes' %}">Eudes</a></li>
+        <li>pai: <a href="{% url 'parentes:hebel' %}">Hebel</a></li>
+        <li>madastra: <a href="{% url 'parentes:nyra' %}">Nyra</a></li>
+        <li>vó(materna): <a href="{% url 'parentes:magali' %}">Magali</a></li>
+        <li>vó(paterna): <a href="{% url 'parentes:marucia' %}">Marucia</a></li>
+        <li>vó(consideracao): <a href="{% url 'parentes:lenira' %}">Lenira</a></li>
+        <li><a href="{% url 'parentes:irmaos' %}">irmãos</a>:</li>
         <ul>
             <li>Miguel</a></li>
             <li>Mirela</li>
             <li>Miryan</li>
             <li>Yan</li></ul>
-        <li><b><a href="/parentes/tios">Tios</a>:</b></li>
+        <li><a href="{% url 'parentes:tios' %}">Tios</a>:</li>
         <ul>
             <li>Jader</li>
             <li>Vitor</li></ul>
-        <li><b><a href="/parentes/primos">Primos</a>:</b></li>
+        <li><a href="{% url 'parentes:primos' %}">Primos</a>:</li>
         <UL>
             <li>Valentina</li>
             <li>Benjamim</li>
