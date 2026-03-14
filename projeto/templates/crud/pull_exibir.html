@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/icon" href="{% static 'icone/icong.ico' %}">
+    <title>Document</title>
+</head>
+<body>
+    
+    jogadores cadastrados:
+
+    <ul>
+        {% for jogador in jogadores %}
+            <li><strong>{{ jogador.nome }}</strong></li>
+        {% empty %}
+            <li>Nenhum jogador cadastrado.</li>
+        {% endfor %}
+    </ul>
+
+    <br><a href="{% url 'crud:main' %}">Voltar</a>
+</body>
+</html>

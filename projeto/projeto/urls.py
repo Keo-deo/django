@@ -18,9 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
+app_name = "main"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.home_view),
-    path("arvore/", include("arvore.urls")),
-    path("colecao/", include("colecao.urls")),
+    path("arvore/", include("arvore.urls"), name="arvore"),
+    path("colecao/", include("colecao.urls"), name="colecao"),
+    path("crud/", include("crud.urls"), name='crud')
 ]

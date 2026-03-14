@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/icon" href="{% static 'icone/icong.ico' %}">
+    <title>Document</title>
+</head>
+<body>
+    
+    para deletar um jogador preencha o campo abaixo:
+
+    <form action="{% url 'crud:pull_deletar' %}" method="POST" id="meuFormulario">
+        {% csrf_token %}
+        <label for="campo_nome">Digite seu nome:</label>
+        <input type="text" name="nome_usuario" id="campo_nome">
+        
+        <!-- Adicionamos o evento onclick para limpar o campo após um micro-atraso -->
+        <button type="submit" onclick="limparCampo()">Enviar</button>
+    </form>
+
+    <script>
+        function limparCampo() {
+            // Usamos setTimeout de 10ms para garantir que o navegador 
+            // capture o valor para o POST antes de apagá-lo visualmente.
+            setTimeout(() => {
+                document.getElementById('campo_nome').value = '';
+            }, 10);
+        }
+    </script>
+
+    <br><a href="{% url 'crud:main' %}">Voltar</a>
+
+</body>
+</html>

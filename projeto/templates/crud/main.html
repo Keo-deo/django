@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/icon" href="{% static 'icone/icong.ico' %}">
+    <title>Crud</title>
+</head>
+<body>
+    bem vindo ao bla bla bla
+
+    <br><a href="{% url 'crud:get_adicionar' %}">Adiciona um jogador ao cadasdastro</a>
+    <br><a href="{% url 'crud:pull_exibir' %}">Exibir todos os jogadores cadastrados</a>
+    <br><a href="{% url 'crud:get_deletar' %}">Deletar um jogador do cadasdastro</a>
+
+    <br><br><br><a href="/">Voltar</a>
+
+</body>
+</html>

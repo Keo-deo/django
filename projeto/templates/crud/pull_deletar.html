@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/icon" href="{% static 'icone/icong.ico' %}">
-    <title>Benjamim</title>
+    <title>Document</title>
 </head>
 <body>
-    <p><b><h3>Nome completo:</h3></b></p>
-    Benjamim
+    
+    <strong>{{ nome }}</strong> foi deletado com sucesso
+
+    <br><br><a href="{% url 'crud:get_deletar' %}">Voltar</a>
 </body>
 </html>
