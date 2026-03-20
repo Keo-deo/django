@@ -1,0 +1,41 @@
+/* ... seus estilos que já existem ... */
+
+.nav-footer {
+    margin-top: 30px;
+    text-align: center;
+    border-top: 1px solid #334155;
+    padding-top: 25px;
+}
+
+/* O BOTÃO AZUL */
+.btn-voltar {
+    background-color: #38bdf8; /* Cor accent */
+    color: #0f172a !important; /* Texto escuro */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 8px;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.btn-voltar:hover {
+    filter: brightness(1.2);
+    transform: scale(1.05);
+}
+
+/* CONFIGURAÇÃO PARA CELULAR */
+@media (max-width: 480px) {
+    .container {
+        width: 100%;
+        max-width: none;
+        padding: 20px;
+        border-radius: 0;
+    }
+
+    .btn-voltar {
+        display: block; /* Vira um botão largão no celular */
+        padding: 15px;
+        font-size: 1.1rem;
+    }
+}

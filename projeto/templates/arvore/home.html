@@ -1,46 +1,277 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/icon" href="{% static 'icone/icong.ico' %}">
-    <title>MainPage</title>
+    <title>Conhecidos de Murilo</title>
+    <style>
+        :root {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --accent: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --sh-red: #f87171; 
+            --warning: #fbbf24;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: var(--bg-card);
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+        }
+
+        .header-info {
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+        }
+
+        .alert-manutencao {
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid var(--warning);
+            color: var(--warning);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .categoria-link {
+            display: flex;
+            align-items: center;
+            background: transparent;
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            transition: 0.3s;
+        }
+
+        .categoria-link::before {
+            content: "▹";
+            margin-right: 10px;
+            color: var(--sh-red);
+        }
+
+        .categoria-link:hover {
+            transform: translateX(10px);
+            color: var(--sh-red);
+        }
+
+        h2 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        h2::before {
+            content: "▹";
+            margin-right: 10px;
+            color: var(--sh-red);
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            background: #334155;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 3px solid transparent;
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+        li:hover:not(.no-hover) {
+            border-left: 3px solid var(--sh-red);
+            background: #475569;
+            transform: translateX(5px);
+        }
+
+        li a {
+            display: block;
+            padding: 10px 15px;
+            color: var(--text-main);
+            text-decoration: none;
+            width: 100%;
+        }
+
+        .apenas-texto {
+            padding: 10px 15px;
+            display: block;
+            color: var(--text-dim);
+        }
+
+        .sub-lista {
+            background: transparent;
+            border: none;
+            margin-left: 0;
+            padding: 5px 0;
+        }
+
+        .sub-lista strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--accent);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .li-tios {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: #334155;
+            border-radius: 8px;
+            gap: 15px;
+            flex-wrap: wrap; /* Ajuste para celular */
+        }
+
+        .buttons-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-perfil {
+            background-color: #1e293b;
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 4px 15px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border: 1px solid #475569;
+            transition: 0.3s;
+        }
+
+        .btn-perfil:hover {
+            border-color: var(--sh-red);
+            background: #334155;
+            color: var(--accent);
+        }
+
+        .nav-footer {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+        }
+
+        .nav-footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* --- AJUSTES PARA CELULAR --- */
+        @media (max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+            h1 { font-size: 1.6rem; }
+            .li-tios { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .buttons-group { width: 100%; justify-content: flex-start; }
+        }
+    </style>
 </head>
 <body>
-    <p>Este site contém informações sobre os conhecidos de Murilo</p>
-    <p><b>Amigos:</b></p>
-    <ul>
-        <li>João</li>
-        <li>Valentina</li>
-        <li>Dudu</li>
-        <li>Duda</li>
-    </ul>
-    <p><b>Parentes:</b></p>
-    <ul>
-        <li>mãe: Alyne</li>
-        <li>padrasto: eudes</li>
-        <li>pai: Hebel</li>
-        <li>madastra: Nyra</li>
-        <li>vó(materna): Magali</li>
-        <li>vó(paterna): Marucia</li>
-        <li>vó(consideracao): Lenira</li>
-        <li><b>irmaos:</b><ul>
-            <li>Miguel</li>
-            <li>Mirela</li>
-            <li>Miryan</li>
-            <li>Yan</li></ul>
-        <li><b>Tios:</b><ul>
-            <li>jader</li>
-            <li>Vitor</li></ul>
-        <li><b>Primos:</b></li><ul>
-            <li>Valentina</li>
-            <li>Benjamim</li></ul>
-            </ul></ul>
-        <dd>
-            <dt><b><a href="{% url 'parentes:home' %}">Parentes</a></b></dt>
-            <dt><b><a href="/">Voltar</a></b></dt>
-        </dl>
-            <p></p>    
+
+    <div class="container">
+        <div class="header-info">
+            <h1>Árvore Social</h1>
+            <p>Conhecidos de Murilo</p>
+        </div>
+
+        <h2>Amigos</h2>
+        <div class="alert-manutencao">
+            <span>⚠️</span> Em manutenção.
+        </div>
+
+        <ul>
+            <li><span class="apenas-texto">João</span></li>
+            <li><span class="apenas-texto">Valentina</span></li>
+            <li><span class="apenas-texto">Dudu</span></li>
+            <li><span class="apenas-texto">Duda</span></li>
+            <li><span class="apenas-texto">Icaro</span></li>
+            <li><span class="apenas-texto">Anabelly</span></li>
+        </ul>
+
+        <a href="{% url 'parentes:home' %}" class="categoria-link">Parentes</a>
+        
+        <ul>
+            <li><a href="{% url 'parentes:alyne' %}">Mãe: Alyne</a></li>
+            <li><a href="{% url 'parentes:hebel' %}">Pai: Hebel</a></li>
+            <li><a href="{% url 'parentes:nyra' %}">Madrasta: Nyra</a></li> <li><a href="{% url 'parentes:magali' %}">Vó (Materna): Magali</a></li>
+            <li><a href="{% url 'parentes:marucia' %}">Vó (Paterna): Marucia</a></li>
+            <li><a href="{% url 'parentes:lenira' %}">Bisavó: Lenira</a></li> <li class="sub-lista no-hover">
+                <strong>Irmãos:</strong>
+                <ul>
+                    <li><a href="{% url 'parentes:miguel' %}">Miguel</a></li>
+                    <li><a href="{% url 'parentes:mirela' %}">Mirela</a></li>
+                    <li><a href="{% url 'parentes:miryan' %}">Miryan</a></li>
+                    <li><a href="{% url 'parentes:yan' %}">Yan</a></li>
+                </ul>
+            </li>
+
+            <li class="sub-lista no-hover">
+                <div class="li-tios">
+                    <strong>Tios:</strong>
+                    <div class="buttons-group">
+                        <a href="{% url 'parentes:vitor' %}" class="btn-perfil">VITOR</a>
+                        <a href="{% url 'parentes:jader' %}" class="btn-perfil">JADER</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="sub-lista no-hover" style="margin-top: 15px;">
+                <div class="li-tios">
+                    <strong>Primos:</strong>
+                    <div class="buttons-group">
+                        <a href="{% url 'parentes:primos' %}" class="btn-perfil">BENJA & VALENTINA</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <div class="nav-footer">
+            <a href="/">← Voltar ao Início</a>
+        </div>
+    </div>
+
 </body>
 </html>

@@ -1,15 +1,150 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/icon" href="{% static 'icone/icong.ico' %}">
     <title>Vitor</title>
+    <style>
+        :root {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --accent: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --sh-red: #f87171; 
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: var(--bg-card);
+            width: 94%;
+            max-width: 500px;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--accent);
+            border-bottom: 2px solid var(--sh-red);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 2.2rem;
+        }
+
+        .info-label {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            opacity: 0.8;
+        }
+
+        .info-valor {
+            font-size: 1.2rem;
+            display: block;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        .foto-container {
+            margin: 20px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #334155;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .descricao-container {
+            background: rgba(15, 23, 42, 0.4);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: left;
+            border-left: 3px solid var(--accent);
+        }
+
+        .descricao-texto {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .nav-footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+        }
+
+        .btn-voltar {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.0rem;
+            transition: 0.3s;
+        }
+
+        .btn-voltar:hover {
+            color: var(--sh-red);
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <p><b><h3>Nome completo:</h3></b></p>
-    Vítor de Santana Oliveira Norberto
-    <p><b><h3>Foto:</h3></b></p>
-    <img src="{% static 'foto_vitor/vitorg.png' %}" alt="Foto Vitor" width="375">    
+
+    <div class="container">
+        <h1>Vitor</h1>
+
+        <span class="info-label">Nome Completo:</span>
+        <span class="info-valor">Vítor de Santana Oliveira Norberto</span>
+        
+        <span class="info-label">Parentesco:</span>
+        <span class="info-valor">Tio</span>
+
+        <div class="foto-container">
+            <img src="{% static 'foto_vitor/vitorg.png' %}" alt="Foto Vitor" width="375" onerror="this.src='https://via.placeholder.com/375x375?text=Vitor'">
+        </div>
+
+        <div class="descricao-container">
+            <span class="info-label" style="margin-top: 0; margin-bottom: 5px;">Descrição:</span>
+            <p class="descricao-texto">
+                Vitor é uma grande inspiração para mim. Um homem que sempre demonstrou ser justo, 
+                correto e honesto em suas atitudes, sendo um tio muito querido ele é como uma bússola para o que eu quero ser no futuro.
+            </p>
+        </div>
+
+        <div class="nav-footer">
+            <a href="{% url 'parentes:home' %}" class="btn-voltar">← Voltar para Parentes</a>
+        </div>
+    </div>
+
+    <p style="font-size: 0.7rem; color: var(--text-dim); margin-top: 20px; opacity: 0.6; text-align: center;">
+        Front-end feito com IA
+    </p>
+
 </body>
 </html>

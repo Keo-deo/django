@@ -1,17 +1,205 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/icon" href="{% static 'icone/icong.ico' %}">
-    <title>Primos</title>
+    <title>Meus Primos</title>
+    <style>
+        :root {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --accent: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --sh-red: #f87171; 
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: var(--accent);
+            border-bottom: 2px solid var(--sh-red);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+
+        .primos-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .card-primo {
+            background: var(--bg-card);
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .card-primo:hover {
+            transform: translateY(-5px);
+            border-color: var(--sh-red);
+        }
+
+        .info-label {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        .info-valor {
+            font-size: 1.2rem;
+            display: block;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        .foto-container {
+            margin: 15px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #334155;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .descricao-secao {
+            background: rgba(15, 23, 42, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+            width: 94%;
+            max-width: 850px;
+            border-left: 4px solid var(--accent);
+            text-align: left;
+        }
+
+        .descricao-texto {
+            font-size: 1rem;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .nav-footer {
+            margin-top: 40px;
+            padding-bottom: 20px;
+        }
+
+        .btn-voltar {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-voltar:hover {
+            color: var(--sh-red);
+            text-decoration: underline;
+        }
+
+        /* --- AJUSTE PARA O QUADRADO FICAR MENOR NO CELULAR --- */
+        @media (max-width: 600px) {
+            .primos-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card-primo {
+                width: 85%; /* Deixa o card menor nas laterais */
+                min-width: unset;
+                padding: 20px;
+            }
+            h1 { font-size: 1.8rem; }
+            .info-valor { font-size: 1.1rem; }
+            .descricao-secao { width: 85%; }
+        }
+    </style>
 </head>
 <body>
-    <p>Primos:</p>
-    <ul>
-        <li><a href="{% url 'parentes:valentina' %}">Valentina</li>
-        <li><a href="{% url 'parentes:benjamim' %}">Benjamim</a></li>
-    </ul>
+
+    <h1>Primos</h1>
+
+    <div class="primos-container">
+        
+        <div class="card-primo">
+            <span class="info-label">Nome Completo:</span>
+            <span class="info-valor">Benjamim Santana Oliveira</span>
+            
+            <span class="info-label">Data de Nascimento:</span>
+            <span class="info-valor">16/05/2018</span>
+            
+            <div class="foto-container">
+                <img src="{% static 'foto_primos/benja.jpg' %}" alt="Foto Benjamim" width="300" onerror="this.src='https://via.placeholder.com/300x300?text=Benjamim'">
+            </div>
+            
+            <p style="color: var(--text-dim); font-size: 0.9rem;">Primo</p>
+        </div>
+
+        <div class="card-primo">
+            <span class="info-label">Nome Completo:</span>
+            <span class="info-valor">Valentina Santana Oliveira</span>
+
+            <span class="info-label">Data de Nascimento:</span>
+            <span class="info-valor">14/05/2015</span>
+            
+            <div class="foto-container">
+                <img src="{% static 'foto_primos/valentina.jpg' %}" alt="Foto Valentina" width="300" onerror="this.src='https://via.placeholder.com/300x300?text=Valentina'">
+            </div>
+            
+            <p style="color: var(--text-dim); font-size: 0.9rem;">Prima</p>
+        </div>
+
+    </div>
+
+    <div class="descricao-secao">
+        <span class="info-label" style="margin-top: 0; margin-bottom: 8px;">Sobre eles:</span>
+        <p class="descricao-texto">
+            O Benja e a Valentina são meus primos e sempre que eu vejo eles eles estão juntos. 
+            Eles são pessoas muito legais e sempre que eles estão aqui a gente brinca bastante. 
+            Fazem parte daquelas conexões de família que a gente gosta de manter sempre por perto.
+        </p>
+    </div>
+
+    <div class="nav-footer">
+        <a href="{% url 'parentes:home' %}" class="btn-voltar">← Voltar para Início</a>
+    </div>
+
+    <p style="font-size: 0.7rem; color: var(--text-dim); margin-top: 20px; opacity: 0.6; text-align: center;">
+        Front-end feito com IA
+    </p>
+
 </body>
 </html>

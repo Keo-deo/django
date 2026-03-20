@@ -7,9 +7,6 @@ def parentes_view(request):
 def alyne_view(request):
     return render(request, "parentes/alyne.html")
 
-def eudes_view(request):
-    return render(request, "parentes/eudes.html")
-
 def hebel_view(request):
     return render(request, "parentes/hebel.html")
 
@@ -51,9 +48,3 @@ def jader_view(request):
 
 def primos_view(request):
     return render(request, "parentes/primos.html")
-
-def valentina_view(request):
-    return render(request, "parentes/valentina.html")
-
-def benjamim_view(request):
-    return render(request, "parentes/benjamim.html")

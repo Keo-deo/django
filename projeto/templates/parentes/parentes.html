@@ -1,42 +1,226 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/icon" href="{% static 'icone/icong.ico' %}">
     <title>Parentes</title>
+    <style>
+        :root {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --accent: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --sh-red: #f87171; 
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: var(--bg-card);
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #334155;
+        }
+
+        h1 {
+            color: var(--accent);
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        h2::before {
+            content: "▹";
+            margin-right: 10px;
+            color: var(--sh-red);
+        }
+
+        /* ESTILO COPIADO DA SUA ARVORE.HTML */
+        .info-row {
+            background: #334155;
+            margin: 8px 0;
+            border-radius: 8px;
+            border-left: 3px solid transparent;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+        }
+
+        .info-row:hover {
+            border-left: 3px solid var(--sh-red);
+            background: #475569;
+            transform: translateX(5px);
+        }
+
+        .row-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .label-text {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-right: 10px;
+            min-width: 100px;
+        }
+
+        .value-text {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        /* Botões individuais dos Tios (Estilo Árvore) */
+        .buttons-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-perfil {
+            background-color: #1e293b;
+            color: var(--text-main);
+            text-decoration: none;
+            padding: 4px 15px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            border: 1px solid #475569;
+            transition: 0.3s;
+        }
+
+        .btn-perfil:hover {
+            border-color: var(--sh-red);
+            background: #334155;
+            color: var(--accent);
+        }
+
+        .nav-footer {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+        }
+
+        .nav-footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+        }
+        /* --- AJUSTES PARA CELULAR --- */
+        @media (max-width: 480px) {
+            .container {
+                width: 97%; /* Diminui a largura lateral no celular */
+                padding: 15px; /* Reduz o respiro interno para sobrar mais espaço */
+            }
+
+            h1 {
+                font-size: 1.6rem; /* Diminui o título para não quebrar linha */
+            }
+
+            .info-valor {
+                font-size: 1rem; /* Diminui um pouco a fonte do texto */
+            }
+
+            img {
+                max-width: 280px; /* Reduz o tamanho da foto no celular */
+            }
+        }
+    </style>
 </head>
 <body>
-    <p><B>Parentes:</B></p>
-    <ul>
-        <li>Mãe:<a href="{% url 'parentes:alyne' %}">Alyne</a></li>
-        <li>padrasto: <a href="{% url 'parentes:eudes' %}">Eudes</a></li>
-        <li>pai: <a href="{% url 'parentes:hebel' %}">Hebel</a></li>
-        <li>madastra: <a href="{% url 'parentes:nyra' %}">Nyra</a></li>
-        <li>vó(materna): <a href="{% url 'parentes:magali' %}">Magali</a></li>
-        <li>vó(paterna): <a href="{% url 'parentes:marucia' %}">Marucia</a></li>
-        <li>vó(consideracao): <a href="{% url 'parentes:lenira' %}">Lenira</a></li>
-        <li><a href="{% url 'parentes:irmaos' %}">irmãos</a>:</li>
-        <ul>
-            <li>Miguel</a></li>
-            <li>Mirela</li>
-            <li>Miryan</li>
-            <li>Yan</li>
-        </ul>
-        <li><a href="{% url 'parentes:tios' %}">Tios</a>:</li>
-        <ul>
-            <li>Jader</li>
-            <li>Vitor</li>
-        </ul>
-        <li><a href="{% url 'parentes:primos' %}">Primos</a>:</li>
-        <UL>
-            <li>Valentina</li>
-            <li>Benjamim</li>
-        </UL>
-    </ul>
-            
-    <br><br><a href="/arvore/">Voltar</a>
+
+    <div class="container">
+        <h1>Parentes</h1>
+
+        <h2>Pais</h2>
+        <a href="{% url 'parentes:alyne' %}" class="row-link">
+            <div class="info-row"><span class="label-text">MÃE:</span> <span class="value-text">Alyne</span></div>
+        </a>
+        <a href="{% url 'parentes:hebel' %}" class="row-link">
+            <div class="info-row"><span class="label-text">PAI:</span> <span class="value-text">Hebel</span></div>
+        </a>
+        <a href="{% url 'parentes:nyra' %}" class="row-link">
+            <div class="info-row"><span class="label-text">MADRASTA:</span> <span class="value-text">Nyra</span></div>
+        </a>
+
+        <h2>Irmãos</h2>
+<a href="{% url 'parentes:miguel' %}" class="row-link">
+            <div class="info-row"><span class="value-text">Miguel</span></div>
+        </a>
+
+        <a href="{% url 'parentes:mirela' %}" class="row-link">
+            <div class="info-row"><span class="value-text">Mirela</span></div>
+        </a>
+
+        <a href="{% url 'parentes:miryan' %}" class="row-link">
+            <div class="info-row"><span class="value-text">Miryan</span></div>
+        </a>
+
+        <a href="{% url 'parentes:yan' %}" class="row-link">
+            <div class="info-row"><span class="value-text">Yan</span></div>
+        </a>
+
+        <h2>Avós</h2>
+        <a href="{% url 'parentes:magali' %}" class="row-link">
+            <div class="info-row"><span class="label-text">MATERNA:</span> <span class="value-text">Magali</span></div>
+        </a>
+        <a href="{% url 'parentes:marucia' %}" class="row-link">
+            <div class="info-row"><span class="label-text">PATERNA:</span> <span class="value-text">Marucia</span></div>
+        </a>
+        <a href="{% url 'parentes:lenira' %}" class="row-link">
+            <div class="info-row"><span class="label-text">BISAVÓ:</span> <span class="value-text">Lenira</span></div>
+        </a>
+
+        <h2>Outros</h2>
+        <div class="info-row">
+            <span class="label-text">Tios:</span>
+            <div class="buttons-group">
+                <a href="{% url 'parentes:vitor' %}" class="btn-perfil">VITOR</a>
+                <a href="{% url 'parentes:jader' %}" class="btn-perfil">JADER</a>
+            </div>
+        </div>
+
+        <a href="{% url 'parentes:primos' %}" class="row-link">
+            <div class="info-row">
+                <span class="label-text">Primos:</span>
+                <span class="value-text">(Valentina, Benjamim)</span>
+            </div>
+        </a>
+
+        <div class="nav-footer">
+            <a href="/arvore/" class="btn-voltar">← Voltar para a Árvore</a>
+        </div>
+    </div>
 
 </body>
 </html>

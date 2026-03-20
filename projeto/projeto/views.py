@@ -8,12 +8,6 @@ db = cliente["django"]
 
 colection = db["dejango"]
 
-informacoes = {
-    "nome": "pinto"
-}
-
-colection.insert_one(informacoes)
-
 def home_view(request):
     return render(request, "homepage.html")
 

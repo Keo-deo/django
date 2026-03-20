@@ -1,191 +1,231 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/icon" href="{% static 'icone/icong.ico' %}">
-    <title>Tabela</title>
+    <title>Minha Coleção de Latinhas</title>
+    <style>
+        :root {
+            --bg-body: #0f172a;
+            --bg-card: #1e293b;
+            --accent: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --sh-red: #f87171; 
+            --gold: #fbbf24;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 10px;
+            margin: 0;
+            min-height: 100vh;
+        }
+
+        .container-colecao {
+            background: var(--bg-card);
+            width: 100%;
+            max-width: 850px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            border: 1px solid #334155;
+            box-sizing: border-box;
+        }
+
+        .header-section {
+            text-align: center;
+            border-bottom: 2px solid var(--sh-red);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+        }
+
+        .filtros-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .btn-filtro {
+            background: #0f172a;
+            color: var(--text-dim);
+            border: 1px solid #334155;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-filtro:hover, .btn-filtro.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        .table-wrapper { 
+            overflow-x: auto; 
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table { width: 100%; border-collapse: collapse; table-layout: auto; }
+        
+        th { text-align: left; color: var(--accent); text-transform: uppercase; font-size: 0.7rem; padding: 12px 8px; border-bottom: 2px solid #334155; }
+        
+        td { padding: 10px 8px; border-bottom: 1px solid #334155; font-size: 0.85rem; vertical-align: middle; }
+        
+        tr.hidden { display: none; }
+
+        .marca-tag { font-weight: bold; color: var(--sh-red); white-space: nowrap; }
+
+        /* AJUSTE DO SABOR (ONDE ESTAVA BUGANDO) */
+        .badge-sabor {
+            background: #0f172a;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            border: 1px solid #334155;
+            display: inline-block;
+            white-space: nowrap; /* Impede a quebra de linha no meio do sabor */
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #334155;
+        }
+
+        .stat-item span { display: block; color: var(--accent); font-size: 0.7rem; font-weight: bold; text-transform: uppercase; }
+        .stat-item strong { font-size: 1.8rem; color: var(--gold); }
+
+        .btn-voltar { color: var(--accent); text-decoration: none; font-weight: bold; margin: 20px 0; display: inline-block; }
+
+        /* --- CORREÇÃO PARA MOBILE --- */
+        @media (max-width: 600px) {
+            body { padding: 10px 5px; }
+            .container-colecao { padding: 15px 8px; width: 100%; border-radius: 8px; }
+            
+            /* Diminuindo a fonte das células para caber tudo */
+            td, th { padding: 8px 4px; font-size: 0.75rem; }
+            .badge-sabor { padding: 2px 6px; font-size: 0.65rem; }
+            
+            /* Forçando a coluna de marcas a ser pequena para dar espaço às outras */
+            td:first-child { width: 50px; } 
+        }
+    </style>
 </head>
 <body>
-    <table border="20">
-        <tr>
-            <th>marca</th>
-            <th>caracteristicas</th>
-            <th>sabor</th>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Star wars(poe)</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Star wars(yoda)</td>
-            <td>zero</td>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Star wars(darth vader)</td>
-            <td>zero</td>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Star wars(anakin)</td>
-            <td>zero</td>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Star wars(leia)</td>
-            <td>zero</td>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Star wars(kylo ren)</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Star wars(palpatine)</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Star wars(C3-PO)</td>
-            <td>Zero</td>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Star wars(Boba)</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Star wars(Chewbacca)</td>
-            <td>Zero</td>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Star wars(Darth Maul)</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Original</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Natal</td>
-            <td>Zero</td>
-        </tr>
-        <tr>
-            <td>TNT</td>
-            <td>NBA</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Coca</td>
-            <td>Star wars(Ashoka)</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Fanta</td>
-            <td>Halloween(freddy)</td>
-            <td>Laranja</td>
-        </tr>
-        <tr>
-            <td>Fanta</td>
-            <td>Halloween(Chucky)</td>
-            <td>Chucky Punch</td>
-        </tr>
-        <tr>
-            <td>Fanta</td>
-            <td>Original</td>
-            <td>Uva</td>
-        </tr>
-        <tr>
-            <td>Guarana jesus</td>
-            <td>Original</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>The Bulldog</td>
-            <td>Original</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Tonica</td>
-            <td>Original</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Pepsi</td>
-            <td>Original</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Guarana</td>
-            <td>Wandinha</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Monster</td>
-            <td>Original</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Kuat</td>
-            <td>Original</td>
-            <td>Original</td>
-        </tr>
-        <tr>
-            <td>Schweppes</td>
-            <td>Mixed Vodka Citrus</td>
-            <td>Vodka Citrus</td>
-        </tr>
-        <tr>
-            <td>Beats</td>
-            <td>Gin e Tonica</td>
-            <td>Gin|Tonica</td>
-        </tr>
-        <tr>
-            <td>Beats</td>
-            <td>Red Mix</td>
-            <td>Frutas Vermelhas</td>
-        </tr>
-        <tr>
-            <td>Beats</td>
-            <td>Senses</td>
-            <td>Senses</td>
-        </tr>
-        <tr>
-            <td>Corona</td>
-            <td>Zero</td>
-            <td>Zero</td>
-        </tr>
-        <tr>
-            <td>-----------------</td>
-            <td>------------------------------</td>
-            <td>-------------</td>
-        </tr>
-        <tr>
-            <th>Fanta</th>
-            <th>Star wars</th>
-            <th>Qtd</th>
-        </tr>
-        <tr>
-            <td>--------3-------</td>
-            <td>-------------12-------------</td>
-            <td>-----30-----</td>
-        </tr>
-        
-        <tr>
-            <th>Ultima</th>
-            <th>atualizacao</th>
-            <td>14/03</td>
-        </tr>
-    </table>
-    <p><dt><b><a href="/">Voltar</a></b></dt></p>
+
+    <div class="container-colecao">
+        <div class="header-section">
+            <h1>Minha Coleção</h1>
+        </div>
+
+        <div class="filtros-container">
+            <button class="btn-filtro active" data-filter="all">Todas</button>
+            <button class="btn-filtro" data-filter="zero">Zero</button>
+            <button class="btn-filtro" data-filter="original">Original</button>
+            <button class="btn-filtro" data-filter="star wars">Star Wars</button>
+            <button class="btn-filtro" data-filter="halloween">Halloween</button>
+        </div>
+
+        <div class="table-wrapper">
+            <table id="tabela-latinhas">
+                <thead>
+                    <tr>
+                        <th>Marca</th>
+                        <th>Características</th>
+                        <th>Sabor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="marca-tag">Coca</td><td>Star Wars (Poe)</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Coca</td><td>Star Wars (Yoda)</td><td><span class="badge-sabor">zero</span></td></tr>
+                    <tr><td class="marca-tag">Coca</td><td>Star Wars (Darth Vader)</td><td><span class="badge-sabor">zero</span></td></tr>
+                    <tr><td class="marca-tag">Coca</td><td>Star Wars (Anakin)</td><td><span class="badge-sabor">zero</span></td></tr>
+                    <tr><td class="marca-tag">Coca</td><td>Star Wars (Leia)</td><td><span class="badge-sabor">zero</span></td></tr>
+                    <tr><td class="marca-tag">Coca</td><td>Star Wars (Kylo Ren)</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Coca</td><td>Star Wars (Palpatine)</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Coca</td><td>Star Wars (C3-PO)</td><td><span class="badge-sabor">Zero</span></td></tr>
+                    <tr><td class="marca-tag">Coca</td><td>Star Wars (Boba)</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Coca</td><td>Star Wars (Chewbacca)</td><td><span class="badge-sabor">Zero</span></td></tr>
+                    <tr><td class="marca-tag">Coca</td><td>Star Wars (Darth Maul)</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Coca</td><td>Original</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Coca</td><td>Natal</td><td><span class="badge-sabor">Zero</span></td></tr>
+                    <tr><td class="marca-tag">TNT</td><td>NBA</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Coca</td><td>Star Wars (Ahsoka)</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Fanta</td><td>Halloween (Freddy)</td><td><span class="badge-sabor">Laranja</span></td></tr>
+                    <tr><td class="marca-tag">Fanta</td><td>Halloween (Chucky)</td><td><span class="badge-sabor">Chucky Punch</span></td></tr>
+                    <tr><td class="marca-tag">Fanta</td><td>Halloween (M3GAN 2.0)</td><td><span class="badge-sabor">Uva</span></td></tr>
+                    <tr><td class="marca-tag">Guarana jesus</td><td>Original</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">The Bulldog</td><td>Original</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Tonica</td><td>Original</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Pepsi</td><td>Original</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Guarana</td><td>Wandinha</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Monster</td><td>Original</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Kuat</td><td>Original</td><td><span class="badge-sabor">Original</span></td></tr>
+                    <tr><td class="marca-tag">Schweppes</td><td>Mixed Vodka Citrus</td><td><span class="badge-sabor">Vodka Citrus</span></td></tr>
+                    <tr><td class="marca-tag">Beats</td><td>Gin e Tonica</td><td><span class="badge-sabor">Gin|Tonica</span></td></tr>
+                    <tr><td class="marca-tag">Beats</td><td>Red Mix</td><td><span class="badge-sabor">Frutas Vermelhas</span></td></tr>
+                    <tr><td class="marca-tag">Beats</td><td>Senses</td><td><span class="badge-sabor">Senses</span></td></tr>
+                    <tr><td class="marca-tag">Corona</td><td>Zero</td><td><span class="badge-sabor">Zero</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span id="label-count">Quantidade Total</span>
+                <strong id="total-count">30</strong>
+            </div>
+        </div>
+    </div>
+
+    <a href="/" class="btn-voltar">← Voltar</a>
+
+    <script>
+        const buttons = document.querySelectorAll('.btn-filtro');
+        const rows = document.querySelectorAll('#tabela-latinhas tbody tr');
+        const totalCountDisplay = document.getElementById('total-count');
+        const labelDisplay = document.getElementById('label-count');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter').toLowerCase();
+                const filterName = button.innerText;
+                let count = 0;
+
+                rows.forEach(row => {
+                    const text = row.innerText.toLowerCase();
+                    if (filter === 'all' || text.includes(filter)) {
+                        row.classList.remove('hidden');
+                        count++;
+                    } else {
+                        row.classList.add('hidden');
+                    }
+                });
+
+                totalCountDisplay.innerText = count;
+                labelDisplay.innerText = filter === 'all' ? "Quantidade Total" : "Qtd: " + filterName;
+            });
+        });
+    </script>
 </body>
 </html>
