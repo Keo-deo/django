@@ -25,5 +25,6 @@ urlpatterns = [
     path("", views.home_view),
     path("arvore/", include("arvore.urls"), name="arvore"),
     path("colecao/", include("colecao.urls"), name="colecao"),
-    path("crud/", include("crud.urls"), name='crud')
+    path("crud/", include("crud.urls"), name='crud'),
+    path("mgay/", views.mgay_view),
 ]

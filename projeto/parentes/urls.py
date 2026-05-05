@@ -16,7 +16,6 @@ urlpatterns = [
     path("irmaos/mirela", views.mirela_view, name="mirela"),
     path("irmaos/miryan", views.miryan_view, name="miryan"),
     path("irmaos/yan", views.yan_view, name="yan"),
-    path("tios/", views.tios_view, name="tios"),
     path("tios/vitor", views.vitor_view, name="vitor"),
     path("tios/jader", views.jader_view, name="jader"),
     path("primos/", views.primos_view, name="primos"),

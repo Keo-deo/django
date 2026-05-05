@@ -37,9 +37,6 @@ def miryan_view(request):
 def yan_view(request):
     return render(request, "parentes/yan.html")
 
-def tios_view(request):
-    return render(request, "parentes/tios.html")
-
 def vitor_view(request):
     return render(request, "parentes/vitor.html")
 
@@ -48,3 +45,4 @@ def jader_view(request):
 
 def primos_view(request):
     return render(request, "parentes/primos.html")
+

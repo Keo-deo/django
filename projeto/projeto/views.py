@@ -1,5 +1,6 @@
-from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
+from django.shortcuts import render
 from pymongo import MongoClient
 
 cliente = MongoClient("mongodb://localhost:27017")
@@ -35,3 +36,7 @@ def adicionar_view(request):
         return render(request, "crud/adicionar.html", contexto)
     
     return HttpResponse("Método não permitido", status=405)
+
+def mgay_view(request):
+    return render(request, "parentes/mgay.html")
+
